@@ -151,6 +151,8 @@
   footer p { margin: 0 0 .75rem; max-width: 56rem; }
   footer p:last-child { margin-bottom: 0; }
   footer strong { color: var(--text); }
+  .banner{display:block;width:100%;height:auto;border-radius:12px;margin:0 0 1.2rem}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -171,8 +173,9 @@
 
 <main>
   <div class="hero wrap">
-    <!-- banner: img/banner.png -->
-    <h1 class="wordmark">Legends <span>Classic</span></h1>
+    <img class="banner" src="img/banner.png" srcset="img/banner.png 1x, img/banner@2x.png 2x" width="1600" height="400"
+      alt="Legends Classic: play X-Men Legends (2004) on PC, from your own copies">
+    <h1 class="wordmark visually-hidden">Legends Classic</h1>
     <p class="pitch">Play X-Men Legends (2004) on PC, built from your own copies of the games.</p>
     <p class="sub">X-Men Legends came out on consoles only. Legends Classic takes the first game from your own Xbox disc
       and rebuilds it to run on your own PC copy of its sequel, X-Men Legends II: Rise of Apocalypse, with modern display
