@@ -6,8 +6,9 @@ scripts or fonts.
 
 ## Images
 
-`img/banner.png` and `img/shot-01.png` ... `img/shot-06.png` are referenced by the page; a missing file shows a
-"Screenshot to come" placeholder. Rules for this repository:
+`img/banner.png` and the gallery images `img/shot-01.jpg` ... `img/shot-10.jpg` (1600x900, with an 800-wide
+`-800.jpg` copy each, every file under 400 KB) are referenced by the page. The full-resolution originals stay out of
+this repository. Rules for this repository:
 
 - screenshots are in-game captures of a player's own Legends Classic build only, captioned as such;
 - no official logos, box art, key art, cutscene stills or music;
