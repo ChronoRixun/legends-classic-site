@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steam Deck guide - Legends Classic</title>
+<meta name="description" content="How to set up Legends Classic on a Steam Deck or another Linux PC with Proton: the Ultimate Legends launcher, GE-Proton, your own copies of both games, building, playing and the known Proton issues.">
+<meta name="color-scheme" content="light dark">
+<style>
+  :root {
+    --bg: #f6f5f1;
+    --surface: #ffffff;
+    --surface-2: #eceae3;
+    --text: #1b1d22;
+    --muted: #555a64;
+    --line: #d9d6cc;
+    --accent: #b5480f;
+    --accent-2: #1f4f8f;
+    --accent-ink: #ffffff;
+    --shadow: 0 1px 2px rgba(20, 20, 30, .06), 0 4px 16px rgba(20, 20, 30, .06);
+    --radius: 12px;
+    --max: 68rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111318;
+      --surface: #181b22;
+      --surface-2: #20242d;
+      --text: #e9e7e1;
+      --muted: #a3a7b0;
+      --line: #2d323d;
+      --accent: #f08a4b;
+      --accent-2: #8db4ec;
+      --accent-ink: #15110d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 4px 16px rgba(0, 0, 0, .3);
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 1rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: var(--accent-2); text-underline-offset: .15em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+
+  /* header */
+  .top { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.5rem; padding-top: .75rem; padding-bottom: .75rem; }
+  .top .name { font-weight: 800; letter-spacing: .02em; text-decoration: none; color: var(--text); }
+  .top nav { display: flex; flex-wrap: wrap; gap: .25rem 1rem; font-size: .925rem; }
+  .top nav a { color: var(--muted); text-decoration: none; }
+  .top nav a:hover { color: var(--text); text-decoration: underline; }
+
+  /* hero */
+  .hero { padding-top: 3rem; padding-bottom: 2.5rem; }
+  @media (min-width: 720px) { .hero { padding-top: 4rem; padding-bottom: 3rem; } }
+  h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1.1; font-weight: 900; letter-spacing: -.02em; }
+  .pitch { margin: 1.25rem 0 0; font-size: clamp(1.1rem, 2.4vw, 1.35rem); line-height: 1.45; max-width: 42rem; font-weight: 600; }
+  .sub { margin: .75rem 0 0; color: var(--muted); max-width: 46rem; }
+  .need {
+    margin: 1.75rem 0 0; padding: 1rem 1.25rem; max-width: 46rem;
+    background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .need p { margin: 0; }
+  .need p + p { margin-top: .5rem; color: var(--muted); font-size: .95rem; }
+  .release { margin-top: 1.5rem; font-size: .925rem; color: var(--muted); max-width: 46rem; }
+  .release p { margin: .25rem 0; }
+  .release strong { color: var(--text); }
+  .toc { margin: 1.5rem 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; max-width: 52rem; }
+  .toc a { display: inline-block; padding: .35rem .8rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: .925rem; }
+  .toc a:hover { border-color: var(--accent-2); }
+
+  /* sections */
+  section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 1.25rem; font-size: clamp(1.4rem, 3.4vw, 1.85rem); line-height: 1.2; letter-spacing: -.01em; }
+  h3 { margin: 0 0 .35rem; font-size: 1.075rem; line-height: 1.3; }
+  .lead { margin: -.5rem 0 1.25rem; color: var(--muted); max-width: 46rem; }
+  .note { margin: 1rem 0 0; font-size: .925rem; color: var(--muted); max-width: 52rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; font-size: .9em; padding: .05em .3em; border-radius: 4px; background: var(--surface-2); overflow-wrap: anywhere; }
+  pre { margin: .6rem 0 0; padding: .75rem 1rem; background: var(--surface-2); border-radius: 8px; overflow-x: auto; max-width: 100%; }
+  pre code { padding: 0; background: none; font-size: .875rem; overflow-wrap: normal; }
+
+  /* steps: one column, numbered */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: 1fr; counter-reset: step; max-width: 52rem; }
+  .steps li {
+    counter-increment: step; position: relative; padding: 1.1rem 1.25rem 1.1rem 4rem; min-width: 0;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 1.1rem; top: 1.05rem;
+    width: 2.1rem; height: 2.1rem; border-radius: 50%; display: grid; place-items: center;
+    background: var(--accent); color: var(--accent-ink); font-weight: 800;
+  }
+  .steps p { margin: 0; color: var(--muted); }
+  .steps p + p { margin-top: .5rem; }
+
+  /* cards */
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); }
+  .card { padding: 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); min-width: 0; }
+  .card p { margin: 0; color: var(--muted); }
+  .card p + p { margin-top: .5rem; }
+  .tag { display: inline-block; margin-left: .35rem; padding: .05rem .5rem; border-radius: 999px; font-size: .75rem; font-weight: 700; vertical-align: .1em; background: var(--accent); color: var(--accent-ink); }
+  .tag.open { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); }
+
+  /* limits / issues */
+  .limits { margin: 0; padding: 0; list-style: none; display: grid; gap: .75rem; max-width: 52rem; }
+  .limits li { padding: .9rem 1.1rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+  .limits strong { display: block; }
+  .limits span { color: var(--muted); }
+  .limits span.tag { color: var(--accent-ink); }
+  .limits span.tag.open { color: var(--text); }
+  .limits pre { margin-top: .5rem; }
+
+  /* community */
+  .links { margin: 0; padding: 0; list-style: none; display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .links a { display: block; height: 100%; padding: 1rem 1.15rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--text); }
+  .links a:hover { border-color: var(--accent-2); }
+  .links b { display: block; color: var(--accent-2); }
+  .links span { color: var(--muted); font-size: .925rem; }
+
+  /* footer */
+  footer { border-top: 1px solid var(--line); background: var(--surface); padding: 2rem 0 2.5rem; font-size: .875rem; color: var(--muted); }
+  footer p { margin: 0 0 .75rem; max-width: 56rem; }
+  footer p:last-child { margin-bottom: 0; }
+  footer strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="index.html">Legends Classic</a>
+    <nav aria-label="Sections">
+      <a href="#tested">What was tested</a>
+      <a href="#install">Install</a>
+      <a href="#build">Build and play</a>
+      <a href="#controllers">Controllers</a>
+      <a href="#issues">Known issues</a>
+      <a href="#help">Help</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <h1>Steam Deck and Linux guide</h1>
+    <p class="pitch">Run the Ultimate Legends launcher through Proton, build X-Men Legends from your own copies of the
+      games, and play it on your Deck.</p>
+    <p class="sub">Ultimate Legends, the Legends Classic builder and the XML2 Fix are Windows programs. Under Proton they
+      are a compatibility path, not a native Linux release. This guide sticks to what a Steam Deck tester and our own
+      Proton test PC have actually done, and it says so when something has not been checked yet.</p>
+
+    <div class="need">
+      <p><strong>You need both games:</strong> a disc image (<code>.iso</code> or XISO) of your own X-Men Legends disc
+        for the original Xbox, and your own X-Men Legends II for PC, installed.</p>
+      <p>The build needs about 8 GB free, plus about 3 GB if you keep the build cache. Leave room for the X-Men Legends
+        II folder and the disc image as well. Making the image:
+        <a href="https://github.com/ChronoRixun/legends-classic/blob/HEAD/docs/DUMPING.md">dumping guide</a>. Already
+        play XML1-recomp? On the Beta channel the launcher can also build from that extracted folder (not tried under
+        Proton yet).</p>
+    </div>
+
+    <div class="release">
+      <p><strong>Current versions.</strong> Stable: launcher 0.4.0, Legends Classic 0.4.0, XML2 Fix 1.8.2. Beta:
+        launcher 0.5.0-beta.4, Legends Classic 0.6.0-beta.1, XML2 Fix 1.11.0-beta.1. Both fixes include the Proton
+        black-screen fix. Only the Beta launcher has drop-down lists that open under Proton.</p>
+      <!-- release round: update -->
+    </div>
+
+    <ul class="toc" aria-label="On this page">
+      <li><a href="#tested">What was tested</a></li>
+      <li><a href="#install">1. Install the launcher</a></li>
+      <li><a href="#files">2. Where to keep your games</a></li>
+      <li><a href="#channel">3. Update channel</a></li>
+      <li><a href="#build">4. Build and play</a></li>
+      <li><a href="#controllers">Controllers and Steam Input</a></li>
+      <li><a href="#gaming-mode">Gaming Mode</a></li>
+      <li><a href="#issues">Known issues and fixes</a></li>
+      <li><a href="#help">Getting help</a></li>
+    </ul>
+  </div>
+
+  <section id="tested">
+    <div class="wrap">
+      <h2>What was tested</h2>
+      <!-- release round: update -->
+      <div class="cards">
+        <div class="card">
+          <h3>A Steam Deck, GE-Proton11-7</h3>
+          <p>In October a tester set up and built X-Men Legends on a Steam Deck with the launcher (from launcher
+            0.2.1 on), then played the early campaign through the 0.1.8 to 0.2.2 builds.</p>
+          <p>In November the same Deck hit two Proton problems: the channel list would not open, and the game stayed on
+            a black screen. The releases above fix both. The tester has not re-checked those fixes on the Deck yet.</p>
+        </div>
+        <div class="card">
+          <h3>Our Proton test PC</h3>
+          <p>Linux in WSL on Windows, GE-Proton11-7 and later GE-Proton11-11, software graphics. We tested launcher
+            0.4.0 to 0.5.0-beta.4, switching channels both ways with in-place updates, builds and rebuilds, and the new
+            drop-down lists of 0.5.0-beta.3 and later.</p>
+          <p>X-Men Legends 0.4.0 reached its main menu with XML2 Fix 1.8.2 and no extra settings. With 1.11.0-beta.1,
+            X-Men Legends II started without the black screen, and a 0.6 beta build finished there. That build was not
+            played.</p>
+        </div>
+        <div class="card">
+          <h3>Not tested yet <span class="tag open">open</span></h3>
+          <p>Valve's own Proton releases. Gaming Mode on our side. A real controller under Proton. Games kept on an SD
+            card. Building from an extracted XML1-recomp folder. Online play from a Deck. If you try any of these,
+            tell us how it went (see <a href="#help">Getting help</a>).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="wrap">
+      <h2>1. Install the launcher (Desktop Mode)</h2>
+      <p class="lead">Do the setup in Desktop Mode (Steam button &gt; Power &gt; Switch to Desktop). After that you can play
+        from Gaming Mode.</p>
+      <ol class="steps">
+        <li>
+          <h3>Install GE-Proton</h3>
+          <p>The tester used <b>GE-Proton11-7</b> on the Deck. Our test PC ran GE-Proton11-7 and GE-Proton11-11. One way
+            to install it: get <b>ProtonUp-Qt</b> from the Discover store, add GE-Proton with it, then restart Steam.
+            Valve's own Proton has not been tried.</p>
+        </li>
+        <li>
+          <h3>Download the launcher</h3>
+          <p>From the <a href="https://github.com/ChronoRixun/ultimate-legends/releases">Ultimate Legends releases</a>,
+            download <code>ultimate-legends-&lt;version&gt;-win64-portable.zip</code> and <code>SHA256SUMS.txt</code>.
+            For Stable, take the release marked <b>Latest</b>. For the Beta, take the newest <b>Pre-release</b>
+            (0.5.0-beta.3 or later is easier under Proton: see <a href="#channel">step 3</a>). To check the download,
+            run <code>sha256sum</code> on the zip in Konsole and compare the result with <code>SHA256SUMS.txt</code>.</p>
+        </li>
+        <li>
+          <h3>Unzip it where it can stay</h3>
+          <p>For example, <code>/home/deck/Games/UltimateLegends</code>. The launcher is portable: its settings, the
+            builder it downloads and its own updates all live in the <code>ultimate-legends</code> folder next to
+            <code>ultimate-legends.exe</code>. If you delete that folder, the launcher's setup goes with it.</p>
+        </li>
+        <li>
+          <h3>Add it to Steam</h3>
+          <p>In Steam: <b>Games &gt; Add a Non-Steam Game to My Library &gt; Browse</b>, then choose
+            <code>ultimate-legends.exe</code>. If the <code>.exe</code> isn't listed, set the file type to all files.
+            Then choose <b>Add Selected Programs</b>.</p>
+        </li>
+        <li>
+          <h3>Force GE-Proton for it</h3>
+          <p>Right-click the new entry and open <b>Properties &gt; Compatibility</b>. Tick <b>Force the use of a specific
+            Steam Play compatibility tool</b> and pick the GE-Proton you installed.</p>
+        </li>
+        <li>
+          <h3>Start it from Steam</h3>
+          <p>The first start sets up the shortcut's Proton prefix, so give it a moment. Keep using this same shortcut,
+            because your saves live in that prefix: <code>Documents/Activision/X-Men Legends</code> inside its Windows
+            drive, under <code>steamapps/compatdata</code>.</p>
+        </li>
+      </ol>
+      <p class="note">These Steam steps are the standard ones for any Windows program. The tester runs the launcher and the
+        game on the Deck under GE-Proton11-7, but their reports don't spell out the shortcut steps. Our test PC started
+        the same zip with Proton directly (umu), not through a Steam shortcut.</p>
+    </div>
+  </section>
+
+  <section id="files">
+    <div class="wrap">
+      <h2>2. Where to keep your games</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>X-Men Legends II</h3>
+          <p>The PC version isn't on Steam, so the launcher uses a normal install folder: the one with
+            <code>XMen2.exe</code> in it. Copying your installed folder from a Windows PC works. Our test PC ran a copied
+            install under Proton. Installing from the disc through Proton was not tried here.</p>
+          <p>Example: <code>/home/deck/Games/XML2</code>.</p>
+        </div>
+        <div class="card">
+          <h3>Your disc image</h3>
+          <p>It can go anywhere the Deck can read. The build reads it once. If you keep the build cache (about 3 GB),
+            later rebuilds don't need the image again.</p>
+        </div>
+        <div class="card">
+          <h3>The new game folder</h3>
+          <p>This must be a new or empty folder. As the launcher says, next to X-Men Legends II on the same drive is best.
+            Example: <code>/home/deck/Games/XML1</code>.</p>
+        </div>
+        <div class="card">
+          <h3>Finding them in the file picker</h3>
+          <p>The launcher's file picker is a Windows one, and your Linux files are on drive <b>Z:</b>. For example,
+            <code>/home/deck/Games</code> is <code>Z:\home\deck\Games</code>. SteamOS mounts SD cards under
+            <code>/run/media</code> (<code>Z:\run\media</code>). Games on an SD card were not tested.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="channel">
+    <div class="wrap">
+      <h2>3. Choose an update channel</h2>
+      <p class="lead"><b>Settings &gt; Updates &gt; Update channel.</b> <b>Stable</b> (the default) gets only full
+        releases. <b>Beta</b> also gets test versions, including the 0.6 online co-op beta.</p>
+      <ul class="limits">
+        <li><strong>Launcher 0.5.0-beta.3 or later: the list just works.</strong>
+          <span>It opens inside the launcher window, so it works under Proton. Use a click, touch, Enter or A to open it,
+            Up / Down to move, and Enter or A to pick. Escape or B closes it without a change.</span></li>
+        <li><strong>Launcher 0.4.0: the list never appears under Proton.</strong>
+          <span>You can still switch blind with the keyboard. Click the box first so it is selected, then press Enter,
+            then Down for Beta (or Up for Stable), then Enter. The change takes effect on the arrow press. Don't press
+            the arrows before the box is selected: they move to other buttons instead.</span></li>
+        <li><strong>After switching to Beta, update in place.</strong>
+          <span>The bar at the top offers the new launcher. Choose Update, then Restart now. In 0.4.0's confirm box, Update is
+            the grey button and the orange one is Not now. The game page updates the
+            XML2 Fix, and Rebuild installs the new builder. On our test PC this worked in place in every direction, with
+            no clean build.</span></li>
+        <li><strong>Going back to Stable</strong>
+          <span>Choose <b>Switch back</b>. It reinstalls the full releases and offers a rebuild. Back up your saves
+            first: a Stable build can't load a save made on a beta build. On our test PC, a save from a 0.5 beta build
+            showed "Save failed".</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="build">
+    <div class="wrap">
+      <h2>4. Build and play</h2>
+      <ol class="steps">
+        <li>
+          <h3>Set up X-Men Legends II</h3>
+          <p>In the library, open <b>X-Men Legends II</b>, choose <b>Set up</b> and then <b>I already have the game
+            installed</b>, and pick its folder. The launcher installs the XML2 Fix there.</p>
+        </li>
+        <li>
+          <h3>Set up X-Men Legends</h3>
+          <p>Open <b>X-Men Legends</b>, choose <b>Set up</b>, then <b>Choose ISO / XISO</b>. With the Beta launcher you can
+            use <b>Choose extracted XML1 folder</b> instead. Under <b>Where the game goes</b>, pick your new folder, then
+            choose <b>Check XML1 source</b>.</p>
+          <p>The launcher downloads the builder. If the download keeps failing, get
+            <code>xml1-builder-&lt;version&gt;-win64.zip</code> from the
+            <a href="https://github.com/ChronoRixun/legends-classic/releases">Legends Classic releases</a> yourself and
+            use <b>Already downloaded the builder? Use its zip</b>.</p>
+        </li>
+        <li>
+          <h3>Build</h3>
+          <p>On a Windows PC the first build takes 6-8 minutes. Under Proton it takes longer: on our test PC, builds
+            with the disc already cached took 12-18 minutes. We haven't timed a build on the Deck. You can hide the
+            build and keep using the launcher, or cancel it and resume later.</p>
+        </li>
+        <li>
+          <h3>Play</h3>
+          <p>Press <b>Play</b> on the game page. Starting from the launcher keeps the XML2 Fix in the game folder up to
+            date. The game page's <b>Display</b> rows set the window mode, resolution, frame rate and VSync. The default
+            is borderless at the desktop size.</p>
+        </li>
+      </ol>
+      <p class="note"><b>Optional: a Steam shortcut straight to the game.</b> The
+        <a href="https://github.com/ChronoRixun/legends-classic/blob/HEAD/docs/CLI.md#steam-deck--proton">builder
+        guide</a> describes adding the built <code>XMen2.exe</code> as its own non-Steam game. If the fix doesn't load,
+        set these Launch Options: <code>WINEDLLOVERRIDES="dinput=n,b" %command%</code>. When the fix loads,
+        <code>xml2-fix.log</code> appears in the game folder. That shortcut gets its own Proton prefix, so it also gets
+        its own saves. The launcher only updates the fix when you start the game from the launcher. These steps were not
+        re-checked for this guide.</p>
+    </div>
+  </section>
+
+  <section id="controllers">
+    <div class="wrap">
+      <h2>Controllers and Steam Input</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>In the launcher</h3>
+          <p>Every page works with a pad, the keyboard, the mouse or touch. The D-pad or arrow keys move between
+            controls, Enter or A presses, and Escape or B goes back. These come from the launcher's own docs. We haven't
+            checked them with a real Deck pad under Proton.</p>
+        </div>
+        <div class="card">
+          <h3>In the game</h3>
+          <p>The XML2 Fix reads Xbox-style pads. On the Deck, Steam Input always sits between the built-in controls and
+            the game. The tester found that the default bindings were wrong with Steam Input on, and Steam keeps it on
+            for the Deck's own controls. Their workaround was to rebind the controls in the game's options.</p>
+          <p>After rebinding, the on-screen button prompts can name the wrong buttons. This is a known open issue
+            (<a href="https://github.com/ChronoRixun/xml2-fix/issues/8">XML2 Fix #8</a>). This was reported on the
+            October builds and hasn't been re-checked since.</p>
+        </div>
+        <div class="card">
+          <h3>An external pad</h3>
+          <p>For a pad that isn't the Deck's own, the XML2 Fix's advice is to turn Steam Input off for the shortcut, so
+            the game sees the pad directly. Not tried on a Deck yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gaming-mode">
+    <div class="wrap">
+      <h2>Gaming Mode</h2>
+      <p class="lead">Once the shortcut works in Desktop Mode, it shows up in Gaming Mode under your library's non-Steam
+        games. Start it, move to X-Men Legends with the D-pad, and press Play.</p>
+      <ul class="limits">
+        <li><strong>Straight into the game (optional)</strong>
+          <span>The launcher's <code>-launch xml1</code> argument, set in the shortcut's Launch Options, starts X-Men
+            Legends as soon as the launcher has loaded. Not tried under Proton yet.</span></li>
+        <li><strong>Not tested by us</strong>
+          <span>Our test PC has no Gaming Mode (gamescope). The tester's reports don't say which mode they played in.
+            If something behaves differently in Gaming Mode, please report it.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="issues">
+    <div class="wrap">
+      <h2>Known issues and fixes</h2>
+      <!-- release round: update -->
+      <ul class="limits">
+        <li><strong>Black screen at start, before the menu. <span class="tag">fixed</span></strong>
+          <span>XML2 Fix 1.8.1 and the 1.9 and 1.10 betas could wait forever while they looked for controllers under Proton. This is
+            fixed in <b>XML2 Fix 1.8.2</b> (Stable) and <b>1.11.0-beta.1</b> (Beta). Update the fix on the game page
+            (pressing Play installs it too). No rebuild is needed. If you're stuck on an older fix, open the game folder's
+            <code>xml2-fix.ini</code> and add these two lines at the end:</span>
+<pre><code>[Input]
+CacheDeviceScan=0</code></pre>
+          <span>On our test PC that made the game render, and normal updates and Rebuild kept the line. Do the same in the
+            X-Men Legends II folder if that game goes black too.</span></li>
+        <li><strong>Drop-down lists never open (update channel, language, display). <span class="tag">fixed</span></strong>
+          <span>Fixed in launcher 0.5.0-beta.3 and later. On 0.4.0, use the keyboard steps in
+            <a href="#channel">step 3</a>.</span></li>
+        <li><strong>"L_BUILDER_EXTRACT": the builder can't be unpacked. <span class="tag">fixed</span></strong>
+          <span>Launchers before 0.2.1 couldn't unpack the builder under Proton. Any current launcher can. If downloading
+            the builder fails, use <b>Already downloaded the builder? Use its zip</b> (see
+            <a href="#build">step 4</a>).</span></li>
+        <li><strong>On Beta, the first build into a new folder stopped after a few minutes. <span class="tag">fixed</span></strong>
+          <span>This happened with launcher 0.5.0-beta.2 and older. It is fixed in 0.5.0-beta.3: update the launcher and
+            build again.</span></li>
+        <li><strong>The launcher window doesn't redraw. <span class="tag open">open</span></strong>
+          <span>Sometimes the window stops updating. Moving the pointer over it, minimizing and restoring it, or resizing
+            it brings it back. The tester saw this on the Deck, and we saw it once on our test PC after a monitor change.
+            It isn't fixed yet.</span></li>
+        <li><strong>Wrong bindings or button prompts with Steam Input. <span class="tag open">open</span></strong>
+          <span>See <a href="#controllers">Controllers and Steam Input</a>.</span></li>
+        <li><strong>Some graphics may differ under Proton. <span class="tag open">open</span></strong>
+          <span>In October the tester saw textures turn blocky at some camera angles, and the main menu's Cerebro drawn
+            wrong. We don't know yet whether Proton or the port causes them.</span></li>
+      </ul>
+      <p class="note">Game issues that aren't specific to Proton are on the main page's
+        <a href="index.html#limits">Honest limits</a> and in the
+        <a href="https://github.com/ChronoRixun/legends-classic/blob/HEAD/docs/KNOWN-ISSUES.md">known issues</a>.</p>
+    </div>
+  </section>
+
+  <section id="help">
+    <div class="wrap">
+      <h2>Getting help</h2>
+      <p class="lead">Ask on the Discord. Say that you're on a Steam Deck or Linux, which GE-Proton you use and which
+        update channel you're on. Attach <code>xml2-fix.log</code> from the game folder. For a failed build, also attach
+        the build log (on the game page, <b>Open build log</b>). The fix's log can contain your PC's name, local
+        addresses and folder paths.</p>
+      <ul class="links">
+        <li><a href="https://discord.gg/tFxwHtZv8k"><b>Discord</b><span>Setup help, bug reports, co-op partners.</span></a></li>
+        <li><a href="https://github.com/ChronoRixun/ultimate-legends/issues"><b>Launcher issues</b><span>Ultimate Legends on GitHub.</span></a></li>
+        <li><a href="https://github.com/ChronoRixun/legends-classic/issues"><b>Port issues</b><span>Legends Classic on GitHub.</span></a></li>
+        <li><a href="https://github.com/ChronoRixun/xml2-fix/issues"><b>Engine fix issues</b><span>XML2 Fix on GitHub.</span></a></li>
+      </ul>
+      <p class="note">The same rule everywhere: no game files, disc images or links to them.
+        <a href="index.html">Back to the main page</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Legends Classic is an unofficial, non-commercial fan project</strong>, not affiliated with or endorsed by
+      Marvel, Disney, Activision, Raven Software or Beenox. Marvel, X-Men, X-Men Legends and all related character names
+      are trademarks of Marvel; all other trademarks belong to their owners and are used only to say which games this
+      project works with. Steam, Steam Deck, SteamOS and Proton are trademarks of Valve. It contains and distributes no game content:
+      you need your own copies of both games.
+      Full text: <a href="https://github.com/ChronoRixun/legends-classic/blob/HEAD/LEGAL.md">LEGAL.md</a>.</p>
+    <p>Code and documentation: <a href="https://github.com/ChronoRixun/legends-classic/blob/HEAD/LICENSE">MIT</a>.
+      No paid builds, no paid features, no ads.</p>
+  </div>
+</footer>
+
+</body>
+</html>
