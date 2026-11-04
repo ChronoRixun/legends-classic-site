@@ -6,8 +6,10 @@ scripts or fonts.
 
 ## Images
 
-`img/banner.png` and the gallery images `img/shot-01.jpg` ... `img/shot-10.jpg` (1600x900, with an 800-wide
-`-800.jpg` copy each, every file under 400 KB) are referenced by the page. The full-resolution originals stay out of
+`img/banner.png` and the gallery images `img/shot-NN.jpg` and `img/online-NN.jpg` (1600x900 unless the page's
+`width`/`height` say otherwise, with an 800-wide `-800.jpg` copy each, every file under 400 KB) are referenced by the
+page. Online screens captured in both aspect ratios also have a 4:3 `img/online-NN-4x3.jpg` (1200x900), linked from
+the caption. The full-resolution originals stay out of
 this repository. Rules for this repository:
 
 - screenshots are in-game captures of a player's own Legends Classic build only, captioned as such;
