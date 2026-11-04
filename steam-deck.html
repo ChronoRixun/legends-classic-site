@@ -143,6 +143,7 @@
       <a href="#install">Install</a>
       <a href="#build">Build and play</a>
       <a href="#controllers">Controllers</a>
+      <a href="#mua">MUA 2006</a>
       <a href="#issues">Known issues</a>
       <a href="#help">Help</a>
     </nav>
@@ -183,6 +184,7 @@
       <li><a href="#build">4. Build and play</a></li>
       <li><a href="#controllers">Controllers and Steam Input</a></li>
       <li><a href="#gaming-mode">Gaming Mode</a></li>
+      <li><a href="#mua">Marvel: Ultimate Alliance (2006)</a></li>
       <li><a href="#issues">Known issues and fixes</a></li>
       <li><a href="#help">Getting help</a></li>
     </ul>
@@ -408,6 +410,43 @@
         <li><strong>Not tested by us</strong>
           <span>Our test PC has no Gaming Mode (gamescope). The tester's reports don't say which mode they played in.
             If something behaves differently in Gaming Mode, please report it.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="mua">
+    <div class="wrap">
+      <h2>Marvel: Ultimate Alliance (2006 PC)</h2>
+      <p class="lead">With Ultimate Legends <b>0.5.0-beta.8</b> or newer (Beta update channel) and MUA Classic Fix
+        <b>0.2.2</b>, the 2006 PC release sets up, updates and plays under Proton, from your own retail disc.</p>
+      <ol class="steps">
+        <li>
+          <h3>Pick a Linux folder</h3>
+          <p>Keep your disc image (ISO) somewhere the Deck can read, and choose a new, empty game folder on a Linux
+            filesystem: the Deck's internal storage, an ext4 SD card or your home folder. Not an NTFS drive or a network
+            share.</p>
+        </li>
+        <li>
+          <h3>Set up</h3>
+          <p>Open <b>Marvel: Ultimate Alliance (2006 PC)</b>, choose <b>Set up</b>, then pick the ISO and the folder. The
+            launcher downloads MUA Classic Fix and checks every game file. Under Proton it uses Proton's own graphics
+            instead of dgVoodoo2.</p>
+        </li>
+        <li>
+          <h3>Play</h3>
+          <p>Proton / Steam Deck handles the display mode, so the game page shows only the controller, Run in background,
+            mouse and online options there.</p>
+        </li>
+      </ol>
+      <ul class="limits">
+        <li><strong>Already set up on Windows?</strong>
+          <span>Copy the game folder to a Linux filesystem on the Deck, point Ultimate Legends at it and choose
+            <b>Update</b> on the game page. It keeps a backup of the Windows graphics file (in <code>_muac/backups</code>),
+            removes it so Proton's graphics are used, and keeps your game files, saves, mods and settings.</span></li>
+        <li><strong>Not tested on a real Deck yet</strong>
+          <span>We tested under GE-Proton 11 on Linux: setup from the ISO, Update of a Windows-made folder, and the game's
+            main menu. Gameplay past the menu and controllers through Steam Input aren't checked yet. Please tell us how it
+            goes (see <a href="#help">Getting help</a>).</span></li>
       </ul>
     </div>
   </section>
