@@ -195,10 +195,10 @@
     </div>
 
     <div class="release">
-      <p><strong>Current release: 0.6.0-beta.2</strong> (beta, on Ultimate Legends' Beta channel) - online co-op inside the
-        game for two to four players, and friends can join a game in progress at the host's next area. Beta.2: the
-        session follows the host's frame rate, the online screens work with keyboard and controller, and Blob fights
-        again. Stable: 0.4.0.
+      <p><strong>Current release: 0.6.1</strong> (stable, with XML2 Fix 1.11.1) - online co-op inside the game for two
+        to four players, friends can join a game in progress at the host's next area, and 0.6.1 adds experimental
+        Skirmish. Beta channel: XML2 Fix 1.12.0-beta.1, a first opt-in preview of the Remastered graphics (no rebuild
+        needed; it plays online with stable).
         All builds: <a href="https://github.com/ChronoRixun/legends-classic/releases">releases</a>.</p>
       <!-- release round: update -->
     </div>
@@ -279,7 +279,7 @@
         <figure>
           <a class="frame" href="img/shot-08.jpg"><img src="img/shot-08-800.jpg" srcset="img/shot-08-800.jpg 800w, img/shot-08.jpg 1600w"
             sizes="(min-width: 720px) 33vw, 100vw" alt="Dialogue box with Wolverine's portrait over a New York street" loading="lazy" width="1600" height="900"></a>
-          <figcaption>The first game's conversations, in the second game's dialogue box</figcaption>
+          <figcaption>The first game's conversations, here in the second game's dialogue box (since 0.6.0 the first game's blue box is the default)</figcaption>
         </figure>
         <figure>
           <a class="frame" href="img/shot-09.jpg"><img src="img/shot-09-800.jpg" srcset="img/shot-09-800.jpg 800w, img/shot-09.jpg 1600w"
@@ -310,7 +310,7 @@
       <h2>Playing online</h2>
       <p class="lead">The 0.6 co-op screens and joins, captured from a 0.6.0 preview build of the beta.1 round on the developer's
         own setup: two game copies on one PC and two on a second PC on the same home network. Every room shown is closed now.
-        Online co-op is still a beta: see <a href="#limits">Honest limits</a> for what has and has not been tested.
+        Online co-op is new in 0.6: see <a href="#limits">Honest limits</a> for what has and has not been tested.
         <a href="#online-beta2">The beta.2 screens</a> follow below.</p>
       <div class="shots">
         <figure>
@@ -351,7 +351,7 @@
         <figure>
           <a class="frame" href="img/online-08.jpg"><img src="img/online-08-800.jpg" srcset="img/online-08-800.jpg 800w, img/online-08.jpg 1600w"
             sizes="(min-width: 720px) 33vw, 100vw" alt="Join by code screen with a code entered and the beta.1 message: This session has started; ask the host to return to the lobby" loading="lazy" width="1600" height="900"></a>
-          <figcaption>A room with DROP-IN off refuses a late joiner and says why (beta.1 wording; beta.2 says to ask the host to start a new session)</figcaption>
+          <figcaption>A room with DROP-IN off refuses a late joiner and says why (beta.1 wording; since beta.2 it says to ask the host to start a new session)</figcaption>
         </figure>
         <figure>
           <a class="frame" href="img/online-09.jpg"><img src="img/online-09-800.jpg" srcset="img/online-09-800.jpg 800w, img/online-09.jpg 1600w"
@@ -472,8 +472,14 @@
             browse public games, get ready in the lobby and see the group on the Party screen. Friends can join a game in
             progress. They come in at the host's next area, while everyone already playing waits a few seconds on "A player
             is joining...". The host's DROP-IN setting turns this off for a room. Every player needs their own copies of both
-            games and the same build. Up to 0.5 you start co-op from Ultimate Legends. Beta.2: the session follows the
+            games and the same build. Up to 0.5 you start co-op from Ultimate Legends. The session follows the
             host's frame rate, and LAN and Connect by IP use the same classic screens.</p>
+        </div>
+        <div class="card">
+          <h3>Skirmish <span class="tag">0.6.1, experimental</span></h3>
+          <p>The first game's own four competitive modes, unlocked by your campaign profile: Brawl at level 16, King Of The
+            Hill at 18, Last Man Standing at 23 and Last Man Ladder at 30, with the characters your campaign has unlocked.
+            Everyone joins the lobby before the host starts a round.</p>
         </div>
         <div class="card">
           <h3>Modern display modes</h3>
@@ -485,7 +491,7 @@
           <p>Controller support, and saves of its own, separate from X-Men Legends II's.</p>
         </div>
       </div>
-      <p class="note">Online co-op, drop-in and the display options are additions the first game never had, not part of
+      <p class="note">Online co-op, drop-in, Skirmish and the display options are additions the first game never had, not part of
         what is matched to the original.</p>
     </div>
   </section>
@@ -495,7 +501,7 @@
       <h2>Honest limits</h2>
       <ul class="limits">
         <li><strong>The first game's loot and shops are still being checked.</strong>
-          <span>They are in the 0.5 beta; the stable 0.4.0 uses X-Men Legends II's drops and shops.</span></li>
+          <span>They are on by default since 0.6.0 and are still being compared with the original.</span></li>
         <li><strong>Some fall kill zones stay off</strong>
           <span>until each is proven safe.</span></li>
         <li><strong>Enemies attack somewhat more often than in the original.</strong>
@@ -505,7 +511,10 @@
           <span>Guests run at the host's rate and get their own setting back when they leave; the host's online limit (normally
             60) still applies. A slow PC, a slow connection or fullscreen VSync can still slow everyone down, and the lobby
             names a PC that can't keep up. Checked on one PC so far.</span></li>
-        <li><strong>Online co-op is a beta.</strong>
+        <li><strong>Skirmish is experimental.</strong>
+          <span>A round keeps a fixed roster: a friend who asks to join an active round is refused and told why. Every
+            hero, power and arena, the exact original balance and internet parties still need wider testing.</span></li>
+        <li><strong>Online co-op is new.</strong>
           <span>Tested with two, three and four players, on one PC and on two PCs on the same home network, including fights,
             and joins by code, over LAN and by IP address. Joining a game in progress was tested one friend at a time and two
             at once, at the X-Mansion's exits and in a fight at the HAARP outer grounds. Not tested yet: players on different
@@ -538,9 +547,10 @@
       <h2>Roadmap</h2>
       <!-- release round: update -->
       <ol class="road">
-        <li><b>0.6</b><span>Online co-op for two to four players with drop-in (in beta now; beta.2 adds the shared frame rate
-          and the rest of the online screens); a later 0.6 beta adds save import from xemu and XML1-recomp</span></li>
-        <li><b>0.7</b><span>An optional "Remastered" graphics toggle</span></li>
+        <li><b>0.6</b><span>Online co-op for two to four players with drop-in (stable since 0.6.0); experimental Skirmish
+          in 0.6.1. Save import from xemu and XML1-recomp stays switched off for now</span></li>
+        <li><b>0.7</b><span>An optional "Remastered" graphics toggle (a first preview is out as XML2 Fix 1.12.0-beta.1 on
+          the Beta channel)</span></li>
         <li><b>0.8</b><span>Co-op recovery</span></li>
         <li><b>0.9</b><span>Moves and characters, tuned against the original</span></li>
         <li><b>1.0</b><span>After a full hand-played run</span></li>

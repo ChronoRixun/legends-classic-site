@@ -165,14 +165,15 @@
       <p>The build needs about 8 GB free, plus about 3 GB if you keep the build cache. Leave room for the X-Men Legends
         II folder and the disc image as well. Making the image:
         <a href="https://github.com/ChronoRixun/legends-classic/blob/HEAD/docs/DUMPING.md">dumping guide</a>. Already
-        play XML1-recomp? On the Beta channel the launcher can also build from that extracted folder (not tried under
+        play XML1-recomp? The launcher (0.5.0 or later) can also build from that extracted folder (not tried under
         Proton yet).</p>
     </div>
 
     <div class="release">
-      <p><strong>Current versions.</strong> Stable: launcher 0.4.0, Legends Classic 0.4.0, XML2 Fix 1.8.2. Beta:
-        launcher 0.5.0-beta.4, Legends Classic 0.6.0-beta.1, XML2 Fix 1.11.0-beta.1. Both fixes include the Proton
-        black-screen fix. Only the Beta launcher has drop-down lists that open under Proton.</p>
+      <p><strong>Current versions.</strong> Stable: launcher 0.6.0, Legends Classic 0.6.1, XML2 Fix 1.11.1. Beta: the
+        same, except XML2 Fix 1.12.0-beta.1 (the Remastered graphics preview). Every current fix includes the Proton
+        black-screen fix, and every launcher from 0.5.0 on has drop-down lists that open under Proton. These versions
+        have not been re-checked under Proton for this guide; the tests below name the versions they used.</p>
       <!-- release round: update -->
     </div>
 
@@ -306,7 +307,7 @@
     <div class="wrap">
       <h2>3. Choose an update channel</h2>
       <p class="lead"><b>Settings &gt; Updates &gt; Update channel.</b> <b>Stable</b> (the default) gets only full
-        releases. <b>Beta</b> also gets test versions, including the 0.6 online co-op beta.</p>
+        releases. <b>Beta</b> also gets test versions as they come out (now the XML2 Fix Remastered preview).</p>
       <ul class="limits">
         <li><strong>Launcher 0.5.0-beta.3 or later: the list just works.</strong>
           <span>It opens inside the launcher window, so it works under Proton. Use a click, touch, Enter or A to open it,
@@ -322,8 +323,8 @@
             no clean build.</span></li>
         <li><strong>Going back to Stable</strong>
           <span>Choose <b>Switch back</b>. It reinstalls the full releases and offers a rebuild. Back up your saves
-            first: a Stable build can't load a save made on a beta build. On our test PC, a save from a 0.5 beta build
-            showed "Save failed".</span></li>
+            first: an older build can refuse a save made by a newer one. On our test PC, in the 0.4.0 days, a save from
+            a 0.5 beta build showed "Save failed" on Stable.</span></li>
       </ul>
     </div>
   </section>
@@ -339,7 +340,7 @@
         </li>
         <li>
           <h3>Set up X-Men Legends</h3>
-          <p>Open <b>X-Men Legends</b>, choose <b>Set up</b>, then <b>Choose ISO / XISO</b>. With the Beta launcher you can
+          <p>Open <b>X-Men Legends</b>, choose <b>Set up</b>, then <b>Choose ISO / XISO</b>. With launcher 0.5.0 or later you can
             use <b>Choose extracted XML1 folder</b> instead. Under <b>Where the game goes</b>, pick your new folder, then
             choose <b>Check XML1 source</b>.</p>
           <p>The launcher downloads the builder. If the download keeps failing, get
@@ -417,8 +418,8 @@
   <section id="mua">
     <div class="wrap">
       <h2>Marvel: Ultimate Alliance (2006 PC)</h2>
-      <p class="lead">With Ultimate Legends <b>0.5.0-beta.8</b> or newer (Beta update channel) and MUA Classic Fix
-        <b>0.2.2</b>, the 2006 PC release sets up, updates and plays under Proton, from your own retail disc.</p>
+      <p class="lead">With Ultimate Legends <b>0.5.0</b> or newer and MUA Classic Fix <b>0.2.2</b> or newer (now 0.2.4),
+        the 2006 PC release sets up, updates and plays under Proton, from your own retail disc.</p>
       <ol class="steps">
         <li>
           <h3>Pick a Linux folder</h3>
@@ -458,7 +459,7 @@
       <ul class="limits">
         <li><strong>Black screen at start, before the menu. <span class="tag">fixed</span></strong>
           <span>XML2 Fix 1.8.1 and the 1.9 and 1.10 betas could wait forever while they looked for controllers under Proton. This is
-            fixed in <b>XML2 Fix 1.8.2</b> (Stable) and <b>1.11.0-beta.1</b> (Beta). Update the fix on the game page
+            fixed since <b>XML2 Fix 1.8.2</b> and <b>1.11.0-beta.1</b>, so every current release has it. Update the fix on the game page
             (pressing Play installs it too). No rebuild is needed. If you're stuck on an older fix, open the game folder's
             <code>xml2-fix.ini</code> and add these two lines at the end:</span>
 <pre><code>[Input]
